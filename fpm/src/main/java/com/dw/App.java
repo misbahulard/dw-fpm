@@ -1,6 +1,7 @@
 package com.dw;
 
-import com.dw.db.oracle.DbConnection;
+import com.dw.db.mysql.MySQLHibernate;
+import com.dw.db.oracle.OracleHibernate;
 
 /**
  * Merupakan main class dari aplikasi
@@ -22,6 +23,9 @@ public class App
      */
     public static void main( String[] args )
     {
-        DbConnection dbConnection = DbConnection.getsInstance(DB_NAME, USER_NAME, USER_PASSWORD);
+        MySQLHibernate mySQLHibernate = MySQLHibernate.getsInstance();
+//        OracleHibernate oracleHibernate = OracleHibernate.getsInstance();
+
+        mySQLHibernate.readBarang();
     }
 }
