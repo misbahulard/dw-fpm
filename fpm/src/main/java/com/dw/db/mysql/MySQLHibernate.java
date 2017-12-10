@@ -1,5 +1,6 @@
 package com.dw.db.mysql;
 
+import com.dw.db.oracle.OracleHibernate;
 import com.dw.model.mysql.Barang;
 import com.dw.model.mysql.Supplier;
 import org.hibernate.Session;
@@ -9,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,19 +75,21 @@ public class MySQLHibernate {
         return sessionFactory;
     }
 
-    public void readBarang() {
+    public ArrayList<Barang> readBarang() {
         Session session = getSessionFactory().openSession();
 
-        Query query = session.createQuery("select b from Supplier b");
+        Query query = session.createQuery("select b from Barang b");
         List list = query.list();
 
-        for (Object o : list) {
-            Supplier b = (Supplier) o;
-
-            System.out.println(b.getId());
-        }
+//        for (Object o : list) {
+//            Barang b = (Barang) o;
+//
+//            System.out.println(b.getId() + b.getNama() + b.getJnsBrg());
+//        }
 
         session.close();
+        ArrayList<Barang> barangs = new ArrayList<>(list);
+        return barangs;
     }
 
     /**
