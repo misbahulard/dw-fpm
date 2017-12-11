@@ -1,5 +1,7 @@
 package com.dw;
 
+import com.dw.dao.mysql.BarangDAO;
+import com.dw.daoimpl.mysql.BarangDAOImpl;
 import com.dw.db.mysql.MySQLHibernate;
 import com.dw.db.oracle.OracleHibernate;
 import com.dw.model.mysql.Barang;
@@ -28,31 +30,20 @@ public class App
     public static void main( String[] args )
     {
         MySQLHibernate mySQLHibernate = MySQLHibernate.getsInstance();
-        OracleHibernate oracleHibernate = OracleHibernate.getsInstance();
+        BarangDAO barangDAO = new BarangDAOImpl(mySQLHibernate);
 
-        ArrayList<Barang> barangs = mySQLHibernate.readBarang();
-
-//        for (Barang barang: barangs) {
-//            System.out.println(barang.getId());
+//        for (Barang b : barangDAO.readBarang()) {
+//            System.out.println(b.getId() + " - " + b.getJnsPsr() + " : " + b.getNama());
 //        }
 
-        System.out.println(barangs.size());
+//        Barang barang = new Barang();
+//
+//        barang.setId("AG20");
+//        barang.setJnsPsr("TRD");
+//
+//        Barang b = barangDAO.readBarang(barang);
+//        System.out.println(b.getId() + " - " + b.getJnsPsr() + " : " + b.getNama());
 
-        ArrayList<Produk> produks = new ArrayList<>();
-        for (int i = 0; i < barangs.size(); i++) {
-            Produk produk = new Produk();
-
-//            produk.setNoProduk(i);
-            produk.setNamaProduk(barangs.get(i).getNama());
-            produk.setKategoriProduk(barangs.get(i).getJnsBrg());
-            produks.add(produk);
-        }
-
-        boolean isSuccess = oracleHibernate.insertProduk(produks);
-        if (isSuccess) {
-            System.out.println("YES!");
-        } else {
-            System.out.println("SHIT");
-        }
+        mySQLHibernate.shutdown();
     }
 }

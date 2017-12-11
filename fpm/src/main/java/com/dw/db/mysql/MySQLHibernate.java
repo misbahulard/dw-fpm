@@ -1,17 +1,8 @@
 package com.dw.db.mysql;
 
-import com.dw.db.oracle.OracleHibernate;
-import com.dw.model.mysql.Barang;
-import com.dw.model.mysql.Supplier;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-import org.hibernate.service.ServiceRegistry;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class yang digunakan untuk membuat koneksi ke database dengan JPA
@@ -71,25 +62,17 @@ public class MySQLHibernate {
      *
      * @return merupakan object session factory
      */
-    private SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-    public ArrayList<Barang> readBarang() {
-        Session session = getSessionFactory().openSession();
-
-        Query query = session.createQuery("select b from Barang b");
-        List list = query.list();
-
-//        for (Object o : list) {
-//            Barang b = (Barang) o;
-//
-//            System.out.println(b.getId() + b.getNama() + b.getJnsBrg());
-//        }
-
-        session.close();
-        ArrayList<Barang> barangs = new ArrayList<>(list);
-        return barangs;
+    /**
+     * Method yang digunakan untuk membuka sesi user
+     *
+     * @return merupakan object sesi yang dibuka
+     */
+    public Session openSession() {
+        return sessionFactory.openSession();
     }
 
     /**
