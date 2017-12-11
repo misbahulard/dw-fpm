@@ -7,7 +7,7 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/src/main/resource/hibernate.mysql.cfg.xml</remarks>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/dw_fpm</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/retail</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
@@ -15,6 +15,24 @@
         <property name="characterEncoding" value="utf8" />
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.mysql.cfg.xml/Hibernate" uuid="b8186be0-b597-41a1-87b7-02636a551379">
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/src/main/resource/hibernate.mysql.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/dw_fpm</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.oracle.cfg.xml/Hibernate" uuid="de4f48d0-52f1-4a94-a98a-d57a9b5c9e30">
+      <driver-ref>oracle</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/src/main/resource/hibernate.oracle.cfg.xml</remarks>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@localhost:1521:orcl</jdbc-url>
+      <driver-properties>
+        <property name="v$session.program" value="DataGrip" />
       </driver-properties>
     </data-source>
   </component>
