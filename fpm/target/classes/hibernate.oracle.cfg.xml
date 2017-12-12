@@ -11,7 +11,8 @@
         <property name="hibernate.connection.password">fpm</property>
         <property name="show_sql">true</property>
 
-        <mapping class="com.dw.model.oracle.ProdukOracle" />
+        <mapping class="com.dw.model.oracle.ProdukOracle"/>
         <mapping class="com.dw.model.oracle.WaktuOracle"/>
+        <mapping class="com.dw.model.oracle.WaktuNewOracle"/>
     </session-factory>
 </hibernate-configuration>

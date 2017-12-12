@@ -1,11 +1,15 @@
 package com.dw;
 
 import com.dw.dao.mysql.WaktuDAO;
+import com.dw.dao.oracle.WaktuNewDAO;
 import com.dw.daoimpl.mysql.WaktuDAOImpl;
+import com.dw.daoimpl.oracle.WaktuNewDAOImpl;
 import com.dw.db.mysql.MySQLHibernate;
 import com.dw.db.oracle.OracleHibernate;
 import com.dw.model.mysql.Waktu;
+import com.dw.model.oracle.WaktuNewOracle;
 import com.dw.model.oracle.WaktuOracle;
+import com.dw.util.InsertWaktu;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,63 +34,8 @@ public class App {
      * @param args merupakan argumen aplikasi
      */
     public static void main(String[] args) {
-        MySQLHibernate mySQLHibernate = MySQLHibernate.getsInstance();
-        OracleHibernate oracleHibernate = OracleHibernate.getsInstance();
 
-        WaktuDAO waktuDAO = new WaktuDAOImpl(mySQLHibernate);
-        com.dw.dao.oracle.WaktuDAO waktuDAOOracle = new com.dw.daoimpl.oracle.WaktuDAOImpl(oracleHibernate);
+        InsertWaktu.newTransaction();
 
-        // Ambil data dari MySQL
-        List<Waktu> waktus = waktuDAO.readWaktu();
-
-        List<WaktuOracle> waktuOracles = new ArrayList<>();
-
-        // Looping untuk menyimpan data ke Array WaktuOracle Data Warehouse
-        for (Waktu w : waktus) {
-            int noWaktu = w.getIdWaktu();
-            Date tanggal = w.getWaktu();
-            java.sql.Date date = w.getWaktu();
-
-            LocalDate localDate = date.toLocalDate();
-            int hari = localDate.getDayOfMonth();
-            int bulan = localDate.getMonthValue();
-            int tahun = localDate.getYear();
-            int quarter = (bulan / 3) + 1;
-
-            WaktuOracle waktuOracle = new WaktuOracle();
-            waktuOracle.setNoWaktu(noWaktu);
-            waktuOracle.setTanggal(tanggal);
-            waktuOracle.setHari(hari);
-            waktuOracle.setBulan(bulan);
-            waktuOracle.setTahun(tahun);
-            waktuOracle.setQuarter(quarter);
-
-            waktuOracles.add(waktuOracle);
-        }
-
-        // Menyimpan ke DW Waktu Oracle
-        waktuDAOOracle.save(waktuOracles);
-
-
-
-//        for (WaktuOracle w : waktus) {
-//            System.out.println(w.getIdWaktu() + " - " + w.getWaktu());
-//        }
-
-//        BarangDAO barangDAO = new BarangDAOImpl(mySQLHibernate);
-
-//        for (Barang b : barangDAO.readBarang()) {
-//            System.out.println(b.getId() + " - " + b.getJnsPsr() + " : " + b.getNama());
-//        }
-
-//        Barang barang = new Barang();
-//
-//        barang.setId("AG20");
-//        barang.setJnsPsr("TRD");
-//
-//        Barang b = barangDAO.readBarang(barang);
-//        System.out.println(b.getId() + " - " + b.getJnsPsr() + " : " + b.getNama());
-
-        mySQLHibernate.shutdown();
     }
 }
