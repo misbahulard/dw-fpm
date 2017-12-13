@@ -13,5 +13,7 @@
         <mapping class="com.dw.model.mysql.Barang" />
         <mapping class="com.dw.model.mysql.Supplier" />
         <mapping class="com.dw.model.mysql.Waktu"/>
+        <mapping class="com.dw.model.mysql.Customer"/>
+        <mapping class="com.dw.model.mysql.Penjualan" />
     </session-factory>
 </hibernate-configuration>
