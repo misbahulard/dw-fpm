@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Pinky Cindy on 12/12/17.
  */
 public interface PelangganDAO {
-    public List<PelangganOracle> readPelanggan();
+    public List<PelangganOracle> readPelangganOracles();
     public List<PelangganOracle> save(List<PelangganOracle> pelangganOracles);
 
 }

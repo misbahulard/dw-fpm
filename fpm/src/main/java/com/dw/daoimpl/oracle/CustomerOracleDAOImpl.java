@@ -1,7 +1,6 @@
 package com.dw.daoimpl.oracle;
 
-import com.dw.dao.mysql.CustomerDAO;
-import com.dw.dao.oracle.CustomersOrclDAO;
+import com.dw.dao.oracle.CustomersOracleDAO;
 import com.dw.db.oracle.OracleHibernate;
 import com.dw.model.oracle.CustomersOracle;
 import org.hibernate.Session;
@@ -13,34 +12,36 @@ import java.util.List;
 /**
  * Created by Pinky Cindy on 12/12/17.
  */
-public class CustomerOrclDAOImpl implements CustomersOrclDAO {
+public class CustomerOracleDAOImpl implements CustomersOracleDAO {
+
     private OracleHibernate oracleHibernate;
 
-    public  CustomerOrclDAOImpl(OracleHibernate oracleHibernate){
+    public CustomerOracleDAOImpl(OracleHibernate oracleHibernate) {
         this.oracleHibernate = oracleHibernate;
     }
 
     @Override
-    public List<CustomersOracle> readCustomerOrcl() {
+    public List<CustomersOracle> readCustomerOracle() {
         Session session = oracleHibernate.openSession();
-        Query query = session.createQuery("select w from CustomersOracle w");
+        Query query = session.createQuery("select co from CustomersOracle co");
 
         List<CustomersOracle> customersOracles = new ArrayList<>();
-        try{
-            for (Object o : query.getResultList()){
-                if(o instanceof CustomersOracle){
-                    CustomersOracle p = (CustomersOracle) o;
-                    customersOracles.add(p);
-                }else {
+
+        try {
+            for (Object o : query.getResultList()) {
+                if (o instanceof CustomersOracle) {
+                    CustomersOracle customersOracle = (CustomersOracle) o;
+                    customersOracles.add(customersOracle);
+                } else {
                     throw new Exception();
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error pasring data");
-
-        }finally {
+        } finally {
             session.close();
         }
-        return  customersOracles;
+
+        return customersOracles;
     }
 }

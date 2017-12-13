@@ -14,6 +14,7 @@ import java.util.List;
  * Created by Pinky Cindy on 12/12/17.
  */
 public class PenjualanDAOImpl implements PenjualanDAO{
+
     private OracleHibernate oracleHibernate;
 
     public  PenjualanDAOImpl(OracleHibernate oracleHibernate){

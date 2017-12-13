@@ -62,7 +62,6 @@ public class InsertWaktu {
         // Menyimpan ke DW Waktu Oracle
         waktuDAOOracle.save(waktuOracles);
 
-
         // ORACLE SESSION
         waktuOracles.clear();
 

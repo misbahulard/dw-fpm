@@ -1,10 +1,10 @@
 package com.dw.util;
 
 import com.dw.dao.mysql.CustomerDAO;
-import com.dw.dao.oracle.CustomersOrclDAO;
+import com.dw.dao.oracle.CustomersOracleDAO;
 import com.dw.dao.oracle.PelangganDAO;
 import com.dw.daoimpl.mysql.CustomerDAOImpl;
-import com.dw.daoimpl.oracle.CustomerOrclDAOImpl;
+import com.dw.daoimpl.oracle.CustomerOracleDAOImpl;
 import com.dw.daoimpl.oracle.PelangganDAOImpl;
 import com.dw.db.mysql.MySQLHibernate;
 import com.dw.db.oracle.OracleHibernate;
@@ -24,7 +24,7 @@ public class InsertCustomer {
         OracleHibernate oracleHibernate = OracleHibernate.getsInstance();
 
         CustomerDAO customerDAO = new CustomerDAOImpl(mySQLHibernate);
-        CustomersOrclDAO customersOrclDAO = new CustomerOrclDAOImpl(oracleHibernate);
+        CustomersOracleDAO customersOracleDAO = new CustomerOracleDAOImpl(oracleHibernate);
         PelangganDAO pelangganDAO = new PelangganDAOImpl(oracleHibernate);
 
       List<PelangganOracle> pelanggans = new ArrayList<>();
@@ -49,7 +49,7 @@ public class InsertCustomer {
         pelangganDAO.save(pelanggans);
         pelanggans.clear();
 
-        List<CustomersOracle> customersO = customersOrclDAO.readCustomerOrcl();
+        List<CustomersOracle> customersO = customersOracleDAO.readCustomerOracle();
         for (CustomersOracle w : customersO) {
             int id = w.getCustId();
             String nama = w.getCustFirstName();

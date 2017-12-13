@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * Created by Pinky Cindy on 12/12/17.
  */
-public interface CustomersOrclDAO {
-    public List<CustomersOracle> readCustomerOrcl();
+public interface CustomersOracleDAO {
+    public List<CustomersOracle> readCustomerOracle();
 }

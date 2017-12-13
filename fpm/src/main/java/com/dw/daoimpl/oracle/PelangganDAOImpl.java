@@ -14,34 +14,37 @@ import java.util.List;
  * Created by Pinky Cindy on 12/12/17.
  */
 public class PelangganDAOImpl implements PelangganDAO {
+
     private OracleHibernate oracleHibernate;
+
     public PelangganDAOImpl(OracleHibernate oracleHibernate){
         this.oracleHibernate = oracleHibernate;
     }
-    @Override
-    public List<PelangganOracle> readPelanggan() {
-        Session session = oracleHibernate.openSession();
-        Query query = session.createQuery("select w from PelangganOracle w");
 
-        List<PelangganOracle> pelanggans = new ArrayList<>();
+    @Override
+    public List<PelangganOracle> readPelangganOracles() {
+        Session session = oracleHibernate.openSession();
+        Query query = session.createQuery("select po from PelangganOracle po");
+
+        List<PelangganOracle> pelangganOracles = new ArrayList<>();
 
         try {
             for (Object o : query.getResultList()) {
                 if (o instanceof PelangganOracle) {
-                    PelangganOracle w = (PelangganOracle) o;
-                    pelanggans.add(w);
+                    PelangganOracle pelangganOracle = (PelangganOracle) o;
+                    pelangganOracles.add(pelangganOracle);
                 } else {
                     throw new Exception();
                 }
             }
         } catch (Exception e) {
             System.out.println("Error parsing data");
-            pelanggans.clear();
+            pelangganOracles.clear();
         } finally {
             session.close();
         }
 
-        return pelanggans;
+        return pelangganOracles;
     }
 
     @Override

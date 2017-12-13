@@ -17,21 +17,21 @@ public class CustomerDAOImpl implements CustomerDAO {
     private MySQLHibernate mySQLHibernate;
 
     public CustomerDAOImpl(MySQLHibernate mySQLHibernate) {
-
         this.mySQLHibernate = mySQLHibernate;
     }
+
     @Override
     public List<Customer> readCustomer() {
         Session session = mySQLHibernate.openSession();
-        Query query = session.createQuery("select w from Customer w");
+        Query query = session.createQuery("select c from Customer c");
 
         List<Customer> customers = new ArrayList<>();
 
         try{
             for (Object o : query.getResultList()) {
                 if (o instanceof Customer) {
-                    Customer w = (Customer) o;
-                    customers.add(w);
+                    Customer customer = (Customer) o;
+                    customers.add(customer);
                 } else {
                     throw new Exception();
                 }

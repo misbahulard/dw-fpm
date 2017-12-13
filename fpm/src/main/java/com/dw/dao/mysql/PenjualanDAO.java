@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * Created by Pinky Cindy on 12/12/17.
  */
-public interface JualDAO {
-    public List<Penjualan> readJual();
+public interface PenjualanDAO {
+    public List<Penjualan> readPenjualan();
 }

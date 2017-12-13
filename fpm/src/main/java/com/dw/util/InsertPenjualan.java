@@ -1,14 +1,11 @@
 package com.dw.util;
 
-import com.dw.dao.mysql.JualDAO;
-import com.dw.dao.oracle.PenjualanDAO;
+import com.dw.dao.mysql.PenjualanDAO;
 import com.dw.dao.oracle.SalesDAO;
-import com.dw.daoimpl.mysql.JualDAOImpl;
-import com.dw.daoimpl.oracle.PenjualanDAOImpl;
+import com.dw.daoimpl.mysql.PenjualanDAOImpl;
 import com.dw.daoimpl.oracle.SalesDAOImpl;
 import com.dw.db.mysql.MySQLHibernate;
 import com.dw.db.oracle.OracleHibernate;
-import com.dw.model.mysql.Penjualan;
 import com.dw.model.oracle.*;
 
 import java.util.ArrayList;
@@ -22,14 +19,14 @@ public class InsertPenjualan {
         MySQLHibernate mySQLHibernate = MySQLHibernate.getsInstance();
         OracleHibernate oracleHibernate = OracleHibernate.getsInstance();
 
-        JualDAO jualDAO = new JualDAOImpl(mySQLHibernate);
+        PenjualanDAO jualDAO = new PenjualanDAOImpl(mySQLHibernate);
         SalesDAO salesDAO = new SalesDAOImpl(oracleHibernate);
-        PenjualanDAO penjualanDAO = new PenjualanDAOImpl(oracleHibernate);
+        com.dw.dao.oracle.PenjualanDAO penjualanDAO = new com.dw.daoimpl.oracle.PenjualanDAOImpl(oracleHibernate);
 
 
        List<PenjualanOracle> sales = new ArrayList<>();
 
-//        List<Penjualan> jual = jualDAO.readJual();
+//        List<Penjualan> jual = jualDAO.readPenjualan();
 //        for (Penjualan w : jual) {
 //            int id = w.getIdBarang();
 //            int cust = w.getIdCustomer();

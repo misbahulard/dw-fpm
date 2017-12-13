@@ -27,8 +27,8 @@ public class WaktuDAOImpl implements WaktuDAO {
         try {
             for (Object o : query.getResultList()) {
                 if (o instanceof Waktu) {
-                    Waktu w = (Waktu) o;
-                    waktus.add(w);
+                    Waktu waktu = (Waktu) o;
+                    waktus.add(waktu);
                 } else {
                     throw new Exception();
                 }
