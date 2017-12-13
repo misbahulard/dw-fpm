@@ -4,8 +4,8 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.mysql.cfg.xml" value="b8186be0-b597-41a1-87b7-02636a551379" />
-          <unit-entry name="hibernate.oracle.cfg.xml" value="de4f48d0-52f1-4a94-a98a-d57a9b5c9e30" />
+          <unit-entry name="hibernate.mysql.cfg.xml" value="f9940e85-4c84-42b2-8b74-a4364415f765" />
+          <unit-entry name="hibernate.oracle.cfg.xml" value="c1927e54-ff4d-472a-b5ac-62f17ec4133b" />
           <unit-entry name="src:main:resource:hibernate.mysql.cfg.xml" value="30a86917-1a00-44de-a315-59f74cbda984" />
         </datasource-map>
         <naming-strategy-map />

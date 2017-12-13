@@ -1,48 +1,48 @@
 package com.dw.daoimpl.mysql;
 
-import com.dw.dao.mysql.BarangDAO;
+import com.dw.dao.mysql.CustomerDAO;
 import com.dw.db.mysql.MySQLHibernate;
-import com.dw.model.mysql.Barang;
-import com.dw.model.mysql.Waktu;
+import com.dw.model.mysql.Customer;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BarangDAOImpl implements BarangDAO {
+/**
+ * Created by Pinky Cindy on 12/12/17.
+ */
+public class CustomerDAOImpl implements CustomerDAO {
 
     private MySQLHibernate mySQLHibernate;
 
-    public BarangDAOImpl(MySQLHibernate mySQLHibernate) {
+    public CustomerDAOImpl(MySQLHibernate mySQLHibernate) {
 
         this.mySQLHibernate = mySQLHibernate;
     }
-
     @Override
-    public List<Barang> readBarang() {
+    public List<Customer> readCustomer() {
         Session session = mySQLHibernate.openSession();
-        Query query = session.createQuery("select w from Barang w");
+        Query query = session.createQuery("select w from Customer w");
 
-        List<Barang> barangs = new ArrayList<>();
+        List<Customer> customers = new ArrayList<>();
 
         try{
             for (Object o : query.getResultList()) {
-                if (o instanceof Barang) {
-                    Barang w = (Barang) o;
-                    barangs.add(w);
+                if (o instanceof Customer) {
+                    Customer w = (Customer) o;
+                    customers.add(w);
                 } else {
                     throw new Exception();
                 }
             }
         }catch (Exception e){
             System.out.println("Eror parsing data!");
-            barangs.clear();
+            customers.clear();
         }finally {
             session.close();
         }
 
-        return barangs;
+        return customers;
     }
 }

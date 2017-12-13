@@ -1,8 +1,8 @@
 package com.dw.daoimpl.oracle;
 
-import com.dw.dao.oracle.WaktuDAO;
+import com.dw.dao.oracle.PelangganDAO;
 import com.dw.db.oracle.OracleHibernate;
-import com.dw.model.oracle.WaktuOracle;
+import com.dw.model.oracle.PelangganOracle;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -10,69 +10,68 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaktuDAOImpl implements WaktuDAO {
-
+/**
+ * Created by Pinky Cindy on 12/12/17.
+ */
+public class PelangganDAOImpl implements PelangganDAO {
     private OracleHibernate oracleHibernate;
-
-    public WaktuDAOImpl(OracleHibernate oracleHibernate) {
-
+    public PelangganDAOImpl(OracleHibernate oracleHibernate){
         this.oracleHibernate = oracleHibernate;
     }
-
     @Override
-    public List<WaktuOracle> readWaktu() {
+    public List<PelangganOracle> readPelanggan() {
         Session session = oracleHibernate.openSession();
-        Query query = session.createQuery("select w from WaktuOracle w");
+        Query query = session.createQuery("select w from PelangganOracle w");
 
-        List<WaktuOracle> waktuOracles = new ArrayList<>();
+        List<PelangganOracle> pelanggans = new ArrayList<>();
 
         try {
             for (Object o : query.getResultList()) {
-                if (o instanceof WaktuOracle) {
-                    WaktuOracle w = (WaktuOracle) o;
-                    waktuOracles.add(w);
+                if (o instanceof PelangganOracle) {
+                    PelangganOracle w = (PelangganOracle) o;
+                    pelanggans.add(w);
                 } else {
                     throw new Exception();
                 }
             }
         } catch (Exception e) {
             System.out.println("Error parsing data");
-            waktuOracles.clear();
+            pelanggans.clear();
         } finally {
             session.close();
         }
 
-        return waktuOracles;
+        return pelanggans;
     }
 
     @Override
-    public List<WaktuOracle> save(List<WaktuOracle> waktuOracles) {
+    public List<PelangganOracle> save(List<PelangganOracle> pelangganOracles) {
         Session session = oracleHibernate.openSession();
         Transaction transaction = session.beginTransaction();
 
         boolean isValid = true;
 
-        for (int i = 0; i < waktuOracles.size(); i++) {
-            WaktuOracle waktuOracle = waktuOracles.get(i);
-            session.save(waktuOracle);
+        for (int i = 0; i < pelangganOracles.size(); i++) {
+            PelangganOracle pelanggan = pelangganOracles.get(i);
+            session.save(pelanggan);
 
-            if (waktuOracle == null) {
+            if (pelanggan == null) {
                 transaction.rollback();
                 isValid = false;
 
                 break;
             } else {
-                waktuOracles.set(i, waktuOracle);
+                pelangganOracles.set(i, pelanggan);
             }
         }
 
         if (isValid) {
             transaction.commit();
         } else {
-            waktuOracles = null;
+            pelangganOracles = null;
         }
 
         session.close();
-        return waktuOracles;
+        return pelangganOracles;
     }
 }

@@ -3,16 +3,19 @@ package com.dw.model.mysql;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "t_barang",
-        indexes = { @Index(name = "idx_t_barang", columnList = "id, supplier, nama, no, jns_brg, jns_psr") })
+
+@Table(name = "t_barang_new")
 @Entity
 public class Barang implements Serializable {
 
     @Id
+    @Column(name ="id_new", columnDefinition = "int(10)")
+    private int id_new;
+
     @Column(name = "id", nullable = false, unique = true, columnDefinition = "char(10)")
     private String id;
 
-    @Id
+
     @Column(name = "jns_psr", nullable = false, unique = true, columnDefinition = "char(6)")
     private String jnsPsr;
 
@@ -52,8 +55,12 @@ public class Barang implements Serializable {
     @Column(name = "stock", nullable = false, columnDefinition = "bigint(12)")
     private long stock;
 
-    public Barang() {
+    public int getId_new() {
+        return id_new;
+    }
 
+    public void setId_new(int id_new) {
+        this.id_new = id_new;
     }
 
     public String getId() {
@@ -68,8 +75,8 @@ public class Barang implements Serializable {
         return jnsPsr;
     }
 
-    public void setJnsPsr(String jsnPsr) {
-        this.jnsPsr = jsnPsr;
+    public void setJnsPsr(String jnsPsr) {
+        this.jnsPsr = jnsPsr;
     }
 
     public String getNo() {

@@ -9,8 +9,6 @@ import java.io.Serializable;
 public class ProdukOracle implements Serializable {
     @Id
     @Column(name = "no_produk", columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "produk_id_seq")
-    @SequenceGenerator(name = "produk_id_seq", sequenceName = "produk_seq", allocationSize = 1)
     private int noProduk;
 
     @Column(name = "nama_produk", columnDefinition = "varchar2(50)")

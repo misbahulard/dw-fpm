@@ -1,14 +1,19 @@
 package com.dw;
 
+import com.dw.dao.mysql.BarangDAO;
 import com.dw.dao.mysql.WaktuDAO;
 import com.dw.dao.oracle.WaktuNewDAO;
 import com.dw.daoimpl.mysql.WaktuDAOImpl;
 import com.dw.daoimpl.oracle.WaktuNewDAOImpl;
 import com.dw.db.mysql.MySQLHibernate;
 import com.dw.db.oracle.OracleHibernate;
+import com.dw.model.mysql.Barang;
 import com.dw.model.mysql.Waktu;
 import com.dw.model.oracle.WaktuNewOracle;
 import com.dw.model.oracle.WaktuOracle;
+import com.dw.util.InsertBarang;
+import com.dw.util.InsertCustomer;
+import com.dw.util.InsertPenjualan;
 import com.dw.util.InsertWaktu;
 
 import java.time.LocalDate;
@@ -34,8 +39,11 @@ public class App {
      * @param args merupakan argumen aplikasi
      */
     public static void main(String[] args) {
+       // InsertWaktu.newTransaction();
+    //    InsertBarang.newTransaction2();
+     //  InsertCustomer.newTransaction();
+        InsertPenjualan.newTransaction();
 
-        InsertWaktu.newTransaction();
 
     }
 }
