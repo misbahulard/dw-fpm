@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 public class InsertWaktu {
+
     public static void newTransaction() {
         MySQLHibernate mySQLHibernate = MySQLHibernate.getsInstance();
         OracleHibernate oracleHibernate = OracleHibernate.getsInstance();
@@ -24,7 +25,7 @@ public class InsertWaktu {
         com.dw.dao.oracle.WaktuDAO waktuDAOOracle = new com.dw.daoimpl.oracle.WaktuDAOImpl(oracleHibernate);
         WaktuNewDAO waktuNewDAO = new WaktuNewDAOImpl(oracleHibernate);
 
-        /**
+        /*
          * Mengambil data dari tabel Waktu di MySQL
          * Dan menyimpan ke tabel Waktu di DW Oracle
          */
