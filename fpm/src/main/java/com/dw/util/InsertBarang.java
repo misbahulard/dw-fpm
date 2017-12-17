@@ -43,7 +43,8 @@ public class InsertBarang {
             produks.add(produkOracle);
         }
         produkDAO.save(produks);
-        produks.clear();
+
+        /*produks.clear();
 
         produks = new ArrayList<>();
 
@@ -65,8 +66,9 @@ public class InsertBarang {
             produks.add(produkOracle);
             i++;
         }
-        produkDAO.save(produks);
+        produkDAO.save(produks);*/
 
         mySQLHibernate.shutdown();
+        oracleHibernate.shutdown();
     }
 }

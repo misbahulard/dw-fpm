@@ -37,6 +37,7 @@ public class PenjualanDAOImpl implements PenjualanDAO {
                 }
             }
         }catch (Exception e){
+            e.printStackTrace();
             System.out.println("Eror parsing data!");
             penjualans.clear();
         }finally {

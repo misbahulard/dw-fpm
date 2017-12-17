@@ -27,17 +27,23 @@ public class InsertCustomer {
         CustomersOracleDAO customersOracleDAO = new CustomerOracleDAOImpl(oracleHibernate);
         PelangganDAO pelangganDAO = new PelangganDAOImpl(oracleHibernate);
 
-      List<PelangganOracle> pelanggans = new ArrayList<>();
+        List<PelangganOracle> pelanggans = new ArrayList<>();
 
         List<Customer> customers = customerDAO.readCustomer();
         for (Customer w : customers) {
             int id = w.getIdNew();
             String nama = w.getNama();
-            String alamat = w.getAlmat()+w.getKdpos();
+            String alamat = w.getAlamat();
             String kota = w.getKota();
 
-            if(kota==""){kota="-";}
-            else{kota=kota;}
+            if (alamat == null || alamat.equals("")) {
+                alamat = "-";
+            }
+
+            if (kota == null || kota.equals("")) {
+                kota = "-";
+            }
+
             PelangganOracle pelangganOracle = new PelangganOracle();
             pelangganOracle.setNoPelanggan(id);
             pelangganOracle.setNamaPelanggan(nama);
@@ -47,7 +53,8 @@ public class InsertCustomer {
             pelanggans.add(pelangganOracle);
         }
         pelangganDAO.save(pelanggans);
-        pelanggans.clear();
+
+        /*pelanggans.clear();
 
         List<CustomersOracle> customersO = customersOracleDAO.readCustomerOracle();
         for (CustomersOracle w : customersO) {
@@ -64,9 +71,10 @@ public class InsertCustomer {
 
             pelanggans.add(pelangganOracle);
         }
-            pelangganDAO.save(pelanggans);
-            pelanggans.clear();
+        pelangganDAO.save(pelanggans);
+        pelanggans.clear();*/
 
         mySQLHibernate.shutdown();
+        oracleHibernate.shutdown();
     }
 }

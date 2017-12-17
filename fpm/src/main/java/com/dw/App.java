@@ -39,9 +39,24 @@ public class App {
      * @param args merupakan argumen aplikasi
      */
     public static void main(String[] args) {
-       // InsertWaktu.newTransaction();
-    //    InsertBarang.newTransaction2();
-     //  InsertCustomer.newTransaction();
+        /**
+         * Insert waktu untuk MySQL dan Oracle
+         */
+        // InsertWaktu.newTransaction();
+
+        /**
+         * Insert barang untuk MySQL
+         */
+        // InsertBarang.newTransaction2();
+
+        /**
+         * Insert customer untuk MySQL
+         */
+        // InsertCustomer.newTransaction();
+
+        /**
+         * Insert customer untuk MySQL
+         */
         InsertPenjualan.newTransaction();
 
 

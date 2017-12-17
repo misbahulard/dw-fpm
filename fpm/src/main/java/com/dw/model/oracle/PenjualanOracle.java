@@ -15,61 +15,58 @@ public class PenjualanOracle implements Serializable {
     @Id
     @SequenceGenerator(name = "gen_penjualan", sequenceName = "seq_penjualan", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_penjualan")
-    @Column(name = "NO_PENJUALAN", columnDefinition = "number(10)")
-    private int id;
+    @Column(name = "ID")
+    private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "NO_PRODUK")
-    private ProdukOracle noProduk;
+    @Column(name = "NO_PRODUK")
+    private Integer noProduk;
 
-    @ManyToOne
-    @JoinColumn(name = "NO_PELANGGAN")
-    private PelangganOracle noPelanggan;
+    @Column(name = "NO_PELANGGAN")
+    private Integer noPelanggan;
 
-    @ManyToOne
-    @JoinColumn(name = "NO_WAKTU")
-    private WaktuOracle noWaktu;
+    @Column(name = "NO_WAKTU")
+    private Integer noWaktu;
 
     @Column(name = "JUMLAH_PENJUALAN")
-    private int jumlahPenjualan;
+    private Integer jumlahPenjualan;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public ProdukOracle getNoProduk() {
+    public Integer getNoProduk() {
         return noProduk;
     }
 
-    public void setNoProduk(ProdukOracle noProduk) {
+    public void setNoProduk(Integer noProduk) {
         this.noProduk = noProduk;
     }
 
-    public PelangganOracle getNoPelanggan() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getNoPelanggan() {
         return noPelanggan;
     }
 
-    public void setNoPelanggan(PelangganOracle noPelanggan) {
+    public void setNoPelanggan(Integer noPelanggan) {
         this.noPelanggan = noPelanggan;
     }
 
-    public WaktuOracle getNoWaktu() {
+    public Integer getNoWaktu() {
         return noWaktu;
     }
 
-    public void setNoWaktu(WaktuOracle noWaktu) {
+    public void setNoWaktu(Integer noWaktu) {
         this.noWaktu = noWaktu;
     }
 
-    public int getJumlahPenjualan() {
+    public Integer getJumlahPenjualan() {
         return jumlahPenjualan;
     }
 
-    public void setJumlahPenjualan(int jumlahPenjualan) {
+    public void setJumlahPenjualan(Integer jumlahPenjualan) {
         this.jumlahPenjualan = jumlahPenjualan;
     }
 }
