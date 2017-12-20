@@ -5,10 +5,10 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
-        <property name="hibernate.connection.username">fpm</property>
-        <property name="hibernate.connection.password">fpm</property>
+        <property name="hibernate.connection.username">sys as sysdba</property>
+        <property name="hibernate.connection.password">2110151023OrCl</property>
         <property name="show_sql">true</property>
 
         <mapping class="com.dw.model.oracle.ProdukOracle"/>

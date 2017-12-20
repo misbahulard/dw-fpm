@@ -15,6 +15,7 @@ import com.dw.util.InsertBarang;
 import com.dw.util.InsertCustomer;
 import com.dw.util.InsertPenjualan;
 import com.dw.util.InsertWaktu;
+import org.hibernate.Session;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -42,8 +43,15 @@ public class App {
        // InsertWaktu.newTransaction();
     //    InsertBarang.newTransaction2();
      //  InsertCustomer.newTransaction();
-        InsertPenjualan.newTransaction();
+//        InsertPenjualan.newTransaction();
 
 
+        OracleHibernate oracleHibernate = OracleHibernate.getsInstance();
+
+        Session session = oracleHibernate.openSession();
+
+        session.createNativeQuery("select * from tab").getResultList();
+
+        oracleHibernate.shutdown();
     }
 }
