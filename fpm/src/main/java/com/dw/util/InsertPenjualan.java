@@ -6,6 +6,7 @@ import com.dw.daoimpl.mysql.PenjualanDAOImpl;
 import com.dw.daoimpl.oracle.SalesDAOImpl;
 import com.dw.db.mysql.MySQLHibernate;
 import com.dw.db.oracle.OracleHibernate;
+import com.dw.model.mysql.Penjualan;
 import com.dw.model.oracle.*;
 
 import java.util.ArrayList;
@@ -20,41 +21,32 @@ public class InsertPenjualan {
         OracleHibernate oracleHibernate = OracleHibernate.getsInstance();
 
         PenjualanDAO jualDAO = new PenjualanDAOImpl(mySQLHibernate);
-        SalesDAO salesDAO = new SalesDAOImpl(oracleHibernate);
         com.dw.dao.oracle.PenjualanDAO penjualanDAO = new com.dw.daoimpl.oracle.PenjualanDAOImpl(oracleHibernate);
 
+        SalesDAO salesDAO = new SalesDAOImpl(oracleHibernate);
 
-       List<PenjualanOracle> sales = new ArrayList<>();
+        List<PenjualanOracle> penjualans = new ArrayList<>();
 
-//        List<Penjualan> jual = jualDAO.readPenjualan();
-//        for (Penjualan w : jual) {
-//            int id = w.getIdBarang();
-//            int cust = w.getIdCustomer();
-//            int id_waktu = w.getTgl();
-//            int jml = w.getJumlah();
-//
-//            ProdukOracle produkOracle = new ProdukOracle();
-//            PelangganOracle pelangganOracle = new PelangganOracle();
-//            WaktuOracle waktuOracle = new WaktuOracle();
-//
-//            produkOracle.setNoProduk(id);
-//            pelangganOracle.setNoPelanggan(cust);
-//            waktuOracle.setNoWaktu(id_waktu);
-//
-//            System.out.println(id_waktu);
-//
-//            PenjualanOracle penjualan = new PenjualanOracle();
-//            penjualan.setNoProduk(produkOracle);
-//            penjualan.setNoPelanggan(pelangganOracle);
-//            penjualan.setNoWaktu(waktuOracle);
-//            penjualan.setJumlahPenjualan(jml);
-//
-//            sales.add(penjualan);
-//        }
-//
-//        penjualanDAO.save(sales);
-//        sales.clear();
+        List<Penjualan> jual = jualDAO.readPenjualan();
 
+        for (Penjualan p : jual) {
+            Integer noProduk = p.getNoProduk();
+            Integer noPelanggan = p.getNoPelanggan();
+            Integer noWaktu = p.getNoWaktu();
+            Integer jml = p.getJumlahPenjualan();
+
+            PenjualanOracle penjualan = new PenjualanOracle();
+            penjualan.setNoProduk(noProduk);
+            penjualan.setNoPelanggan(noPelanggan);
+            penjualan.setNoWaktu(noWaktu);
+            penjualan.setJumlahPenjualan(jml);
+
+            penjualans.add(penjualan);
+        }
+
+        penjualanDAO.save(penjualans);
+
+        /*penjualans.clear();
 
         List<SalesOracle> sale = salesDAO.readSales();
         for (SalesOracle w : sale) {
@@ -80,10 +72,12 @@ public class InsertPenjualan {
             penjualan.setNoWaktu(waktuOracle);
             penjualan.setJumlahPenjualan(jml);
 
-            sales.add(penjualan);
+            penjualans.add(penjualan);
         }
 
-        penjualanDAO.save(sales);
-       //mySQLHibernate.shutdown();
+        penjualanDAO.save(penjualans);*/
+
+        mySQLHibernate.shutdown();
+        oracleHibernate.shutdown();
     }
 }

@@ -93,5 +93,6 @@ public class InsertWaktu {
         waktuDAOOracle.save(waktuOracles);
 
         mySQLHibernate.shutdown();
+        oracleHibernate.shutdown();
     }
 }

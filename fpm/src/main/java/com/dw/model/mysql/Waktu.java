@@ -7,10 +7,10 @@ import java.sql.Date;
 @Table(name = "t_waktu")
 public class Waktu {
     @Id
-    @Column(name = "id_waktu", columnDefinition = "int(10)")
+    @Column(name = "id", columnDefinition = "int(10)")
     private int idWaktu;
 
-    @Column(name = "waktu", nullable = false, columnDefinition = "date")
+    @Column(name = "tgl", nullable = false, columnDefinition = "date")
     private Date waktu;
 
     public int getIdWaktu() {

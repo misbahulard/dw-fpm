@@ -52,19 +52,27 @@ public class PenjualanDAOImpl implements PenjualanDAO{
 
         boolean isValid = true;
 
+        int counter = 0;
         for (int i = 0; i < penjualanOracles.size(); i++) {
-            PenjualanOracle product = penjualanOracles.get(i);
-            session.save(product);
+            PenjualanOracle penjualan = penjualanOracles.get(i);
+            session.save(penjualan);
 
-            if (product == null) {
+            if (penjualan == null) {
                 transaction.rollback();
                 isValid = false;
 
                 break;
             } else {
-                System.out.println("Penjualan id : " + product.getId());
-                penjualanOracles.set(i, product);
+                if (counter == 1000) {
+                    counter = 0;
+                    System.out.println("COMMITED!!!!");
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                }
+//                System.out.println("Penjualan id : " + penjualan.getId());
+                penjualanOracles.set(i, penjualan);
             }
+            counter++;
         }
 
         if (isValid) {

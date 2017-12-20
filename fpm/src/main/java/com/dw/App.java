@@ -40,18 +40,24 @@ public class App {
      * @param args merupakan argumen aplikasi
      */
     public static void main(String[] args) {
-       // InsertWaktu.newTransaction();
-    //    InsertBarang.newTransaction2();
-     //  InsertCustomer.newTransaction();
-//        InsertPenjualan.newTransaction();
+        /**
+         * Insert waktu untuk MySQL dan Oracle
+         */
+        // InsertWaktu.newTransaction();
 
+        /**
+         * Insert barang untuk MySQL
+         */
+        // InsertBarang.newTransaction2();
 
-        OracleHibernate oracleHibernate = OracleHibernate.getsInstance();
+        /**
+         * Insert customer untuk MySQL
+         */
+        // InsertCustomer.newTransaction();
 
-        Session session = oracleHibernate.openSession();
-
-        session.createNativeQuery("select * from tab").getResultList();
-
-        oracleHibernate.shutdown();
+        /**
+         * Insert customer untuk MySQL
+         */
+        InsertPenjualan.newTransaction();
     }
 }

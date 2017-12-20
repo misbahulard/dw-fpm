@@ -1,3 +1,7 @@
+AUTO INCREMENT
+==================================================
+alter table t_barang_new AUTO_INCREMENT = 60000;
+
 INSERT t_barang_new in mySQL
 =============================================================
 INSERT INTO t_barang_new (id, jns_psr, no, nama, jns_brg, hrg_beli, sat_bsr,hrg_bsr, sat_kcl, hrg_kcl, isi, supplier, kritis, stock) SELECT id, jns_psr, no, nama, jns_brg, hrg_beli, sat_bsr,hrg_bsr, sat_kcl, hrg_kcl, isi, supplier, kritis, stock FROM t_barang;
@@ -6,6 +10,11 @@ INSERT INTO t_barang_new (id, jns_psr, no, nama, jns_brg, hrg_beli, sat_bsr,hrg_
 INSERT t_penjualan in mySQL
 ==============================================================
 INSERT INTO t_penjualan SELECT t_barang_new.id_new as idBarang, t_customer_new.id_new as idCust, t_waktu.id_waktu, (t_det_jual.jml_bsr+t_det_jual.jml_kcl) as Jumlah 
+FROM t_barang_new, t_det_jual, t_jual , t_customer_new , t_waktu
+WHERE t_det_jual.nota=t_jual.nota AND t_customer_new.id = t_jual.cust AND t_barang_new.id=t_det_jual.id_brg AND t_jual.tgl_nota=t_waktu.waktu
+
+// NEW //
+INSERT INTO t_penjualan (id_barang, id_customer, tgl, jumlah) SELECT t_barang_new.id_new as idBarang, t_customer_new.id_new as idCust, t_waktu.id_waktu, (t_det_jual.jml_bsr+t_det_jual.jml_kcl) as Jumlah 
 FROM t_barang_new, t_det_jual, t_jual , t_customer_new , t_waktu
 WHERE t_det_jual.nota=t_jual.nota AND t_customer_new.id = t_jual.cust AND t_barang_new.id=t_det_jual.id_brg AND t_jual.tgl_nota=t_waktu.waktu
 
@@ -18,8 +27,9 @@ INSERT INTO t_waktu (waktu) SELECT DISTINCT tgl_nota FROM t_jual
 
 INSERT t_waktu in ORACLE
 ==============================================================
-INSERT INTO WAKTU_NEW (ID_WAKTU, WAKTU) SELECT WAKTU_NEW_SEQ.nextval, s.*
-FROM(SELECT distinct TIME_ID FROM SALES) s;
+INSERT INTO WAKTU_NEW (ID_WAKTU, WAKTU) 
+SELECT WAKTU_NEW_SEQ.nextval, s.*
+FROM (SELECT distinct TIME_ID FROM SALES ORDER BY TIME_ID ASC) s;
 
 
 INSERT t_jual_bantuan in ORACLE

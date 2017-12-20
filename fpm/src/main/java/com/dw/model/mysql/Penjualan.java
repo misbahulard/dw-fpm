@@ -8,63 +8,56 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "t_penjualan")
-public class Penjualan implements Serializable{
-
+public class Penjualan implements Serializable {
     @Id
-    @GeneratedValue
-    @Column(name = "id", nullable = false, unique = true)
-    private int id;
+    @Column(name = "ID")
+    private Integer id;
+    @Column(name = "NO_PRODUK")
+    private Integer noProduk;
+    @Column(name = "NO_PELANGGAN")
+    private Integer noPelanggan;
+    @Column(name = "NO_WAKTU")
+    private Integer noWaktu;
+    @Column(name = "JUMLAH_PENJUALAN")
+    private Integer jumlahPenjualan;
 
-    @Column(name = "id_barang")
-    private int idBarang;
-
-    @Column(name = "id_customer")
-    private int idCustomer;
-    private int tgl;
-    private int jumlah;
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getIdBarang() {
-        return idBarang;
+    public Integer getNoProduk() {
+        return noProduk;
     }
 
-    public void setIdBarang(int idBarang) {
-        this.idBarang = idBarang;
+    public void setNoProduk(Integer noProduk) {
+        this.noProduk = noProduk;
     }
 
-    public int getIdCustomer() {
-        return idCustomer;
+    public Integer getNoPelanggan() {
+        return noPelanggan;
     }
 
-    public void setIdCustomer(int idCustomer) {
-        this.idCustomer = idCustomer;
+    public void setNoPelanggan(Integer noPelanggan) {
+        this.noPelanggan = noPelanggan;
     }
 
-    @Basic
-    @Column(name = "tgl")
-    public int getTgl() {
-        return tgl;
+    public Integer getNoWaktu() {
+        return noWaktu;
     }
 
-    public void setTgl(int tgl) {
-        this.tgl = tgl;
+    public void setNoWaktu(Integer noWaktu) {
+        this.noWaktu = noWaktu;
     }
 
-    @Basic
-    @Column(name = "jumlah")
-    public int getJumlah() {
-        return jumlah;
+    public Integer getJumlahPenjualan() {
+        return jumlahPenjualan;
     }
 
-    public void setJumlah(int jumlah) {
-        this.jumlah = jumlah;
+    public void setJumlahPenjualan(Integer jumlahPenjualan) {
+        this.jumlahPenjualan = jumlahPenjualan;
     }
-
 }
