@@ -25,6 +25,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.2.12.Final</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.poi</groupId>-->
+            <!--<artifactId>poi-ooxmi</artifactId>-->
+            <!--<version>3.17</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>junit</groupId>
